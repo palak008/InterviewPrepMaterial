@@ -1,0 +1,38 @@
+/*
+Author: Palak Bansal
+MTech CSED, MNNIT Allahabad
+Date: 2 Sept 2021
+Problem:  Rotate a Linked List
+
+Prob Link: https://leetcode.com/problems/rotate-list/
+
+Sol Ref: https://www.youtube.com/watch?v=FsF8mePgFhw&list=PLEbnTDJUr_IdsCDTulbxcITxAuC-rm2ys&index=19&t=638s
+
+*/
+
+class Solution {
+    public ListNode rotateRight(ListNode head, int k) {
+        
+        if(head==null || k==0 || head.next==null)
+            return head;
+        
+        int N=1;
+        ListNode trav= head;
+        while(trav.next!=null)
+        {
+            trav=trav.next;
+            N++;
+        }
+        
+        k= k%N;
+        trav.next= head;
+        trav= head;
+        for(int i=0;i<N-k-1;i++)
+        {
+            trav= trav.next;
+        }
+        head= trav.next;
+        trav.next=null;
+        return head;
+    }
+}
